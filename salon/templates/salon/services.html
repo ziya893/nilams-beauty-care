@@ -1,0 +1,55 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Our Services | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">What We Offer</p>
+        <h1>Our Services</h1>
+        <p class="page-hero__subtitle">Hair, face, skin, makeup and bridal treatments — tailored for you.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if grouped_services %}
+            {% for group in grouped_services %}
+            <div class="service-category">
+                <h2 class="service-category__title">{{ group.label }}</h2>
+                <div class="service-grid">
+                    {% for service in group.items %}
+                    <div class="service-card">
+                        <div class="service-card__top">
+                            <span class="tag">{{ service.get_category_display }}</span>
+                            <span class="price">₹{{ service.price|floatformat:0 }}</span>
+                        </div>
+                        <h3>{{ service.name }}</h3>
+                        <p>{{ service.description }}</p>
+                        <div class="service-card__bottom">
+                            <span class="duration">⏱ {{ service.duration_display }}</span>
+                            <a href="{% url 'salon:book_appointment' %}" class="link-arrow">Book &rarr;</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Services will be listed here soon. Please contact us directly for details.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section section--cta">
+    <div class="container cta-banner">
+        <div>
+            <h2>Can't decide which treatment you need?</h2>
+            <p>Call or WhatsApp us and we'll help you choose the right package.</p>
+        </div>
+        <a href="tel:+{{ SALON_PHONE_RAW }}" class="btn btn--primary">Call {{ SALON_PHONE }}</a>
+    </div>
+</section>
+
+{% endblock %}

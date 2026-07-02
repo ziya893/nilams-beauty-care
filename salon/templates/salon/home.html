@@ -1,0 +1,96 @@
+{% extends 'salon/base.html' %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container hero__inner">
+        <p class="eyebrow">Welcome to</p>
+        <h1>{{ SALON_NAME }}</h1>
+        <p class="hero__tagline">Elegant hair, face &amp; bridal beauty treatments — crafted with care in Bapunagar, Ahmedabad.</p>
+        <div class="hero__actions">
+            <a href="{% url 'salon:book_appointment' %}" class="btn btn--primary">Book an Appointment</a>
+            <a href="{% url 'salon:services' %}" class="btn btn--ghost">View Services</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section--highlights">
+    <div class="container highlights">
+        <div class="highlight-card">
+            <span class="highlight-card__icon">💇‍♀️</span>
+            <h3>Hair Treatment</h3>
+            <p>Haircuts, spa, colour, smoothening &amp; keratin care.</p>
+        </div>
+        <div class="highlight-card">
+            <span class="highlight-card__icon">✨</span>
+            <h3>Face Treatment</h3>
+            <p>Facials, de-tan, anti-ageing &amp; brightening care.</p>
+        </div>
+        <div class="highlight-card">
+            <span class="highlight-card__icon">💄</span>
+            <h3>Makeup Packages</h3>
+            <p>Party, HD &amp; engagement makeup looks.</p>
+        </div>
+        <div class="highlight-card">
+            <span class="highlight-card__icon">👰</span>
+            <h3>Bridal Packages</h3>
+            <p>Complete bridal &amp; pre-bridal beauty packages.</p>
+        </div>
+    </div>
+</section>
+
+{% if featured_services %}
+<section class="section section--featured">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">Popular</p>
+        <h2 class="section__title">Featured Services</h2>
+        <div class="service-grid">
+            {% for service in featured_services %}
+            <div class="service-card">
+                <div class="service-card__top">
+                    <span class="tag">{{ service.get_category_display }}</span>
+                    <span class="price">₹{{ service.price|floatformat:0 }}</span>
+                </div>
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.description }}</p>
+                <div class="service-card__bottom">
+                    <span class="duration">⏱ {{ service.duration_display }}</span>
+                    <a href="{% url 'salon:book_appointment' %}" class="link-arrow">Book &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="section__cta">
+            <a href="{% url 'salon:services' %}" class="btn btn--outline">See All Services</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="section section--cta">
+    <div class="container cta-banner">
+        <div>
+            <h2>Ready for your glow-up?</h2>
+            <p>Reserve your slot in seconds — we'll confirm on call or WhatsApp.</p>
+        </div>
+        <a href="{% url 'salon:book_appointment' %}" class="btn btn--primary">Book an Appointment</a>
+    </div>
+</section>
+
+<section class="section section--about-preview">
+    <div class="container about-preview">
+        <div class="about-preview__text">
+            <p class="eyebrow">Why Choose Us</p>
+            <h2 class="section__title section__title--left">A trusted salon in the heart of Bapunagar</h2>
+            <ul class="checklist">
+                <li>Experienced &amp; friendly beauty experts</li>
+                <li>Hygienic tools &amp; premium quality products</li>
+                <li>Customised hair, skin &amp; bridal packages</li>
+                <li>Comfortable, relaxing salon ambience</li>
+            </ul>
+            <a href="{% url 'salon:about' %}" class="link-arrow">Learn more about us &rarr;</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

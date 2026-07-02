@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ SALON_NAME }} | Ahmedabad{% endblock %}</title>
+    <meta name="description" content="{{ SALON_NAME }} - Hair, face, skin, makeup and bridal beauty treatments in Bapunagar, Ahmedabad.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="container topbar__inner">
+            <a href="tel:+{{ SALON_PHONE_RAW }}" class="topbar__link">📞 {{ SALON_PHONE }}</a>
+            <span class="topbar__address">{{ SALON_ADDRESS }}</span>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a href="{% url 'salon:home' %}" class="brand">
+                <span class="brand__mark">N</span>
+                <span class="brand__text">
+                    Nilam's <span>Beauty Care</span>
+                </span>
+            </a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </label>
+
+            <nav class="main-nav">
+                <a href="{% url 'salon:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'salon:services' %}" class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}">Services</a>
+                <a href="{% url 'salon:about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+                <a href="{% url 'salon:contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+                <a href="{% url 'salon:book_appointment' %}" class="btn btn--nav">Book Appointment</a>
+            </nav>
+        </div>
+    </header>
+
+    {% if messages %}
+        <div class="container">
+            {% for message in messages %}
+                <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <a href="https://wa.me/{{ SALON_WHATSAPP }}?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services"
+       class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+            <path d="M16.02 3C9.4 3 4 8.36 4 15.02c0 2.35.65 4.55 1.79 6.43L4 29l7.73-1.72a11.9 11.9 0 0 0 4.29.8h.01c6.62 0 12.02-5.36 12.02-12.02C28.05 8.36 22.65 3 16.02 3zm0 21.86h-.01a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-4.59 1.02 1.03-4.47-.24-.37a9.85 9.85 0 0 1-1.52-5.42c0-5.46 4.45-9.9 9.94-9.9 2.65 0 5.14 1.03 7.02 2.9a9.83 9.83 0 0 1 2.91 6.99c0 5.46-4.45 9.85-9.13 9.85zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.63-.92-2.23-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.2 3.05c.15.2 2.09 3.2 5.06 4.48.71.31 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/>
+        </svg>
+    </a>
+
+    <footer class="site-footer">
+        <div class="container footer__grid">
+            <div>
+                <h3>{{ SALON_NAME }}</h3>
+                <p>Elegant beauty and wellness care for hair, skin, face and bridal looks — right here in Bapunagar, Ahmedabad.</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>{{ SALON_ADDRESS }}</p>
+                <p><a href="tel:+{{ SALON_PHONE_RAW }}">{{ SALON_PHONE }}</a></p>
+                <p><a href="https://wa.me/{{ SALON_WHATSAPP }}" target="_blank" rel="noopener">WhatsApp Us</a></p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p><a href="{% url 'salon:services' %}">Our Services</a></p>
+                <p><a href="{% url 'salon:book_appointment' %}">Book an Appointment</a></p>
+                <p><a href="{% url 'salon:about' %}">About Us</a></p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>&copy; {% now "Y" %} {{ SALON_NAME }}. All rights reserved.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

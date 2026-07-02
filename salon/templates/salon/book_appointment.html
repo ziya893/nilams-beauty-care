@@ -1,0 +1,73 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Book an Appointment | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">Reserve Your Slot</p>
+        <h1>Book an Appointment</h1>
+        <p class="page-hero__subtitle">Fill in your details and we'll confirm your slot on call or WhatsApp.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container form-wrapper">
+        <form method="post" class="booking-form" novalidate>
+            {% csrf_token %}
+
+            <div class="form-row">
+                <label for="{{ form.full_name.id_for_label }}">Full Name</label>
+                {{ form.full_name }}
+                {% if form.full_name.errors %}<p class="field-error">{{ form.full_name.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="form-row-group">
+                <div class="form-row">
+                    <label for="{{ form.phone_number.id_for_label }}">Mobile Number</label>
+                    {{ form.phone_number }}
+                    {% if form.phone_number.errors %}<p class="field-error">{{ form.phone_number.errors.0 }}</p>{% endif %}
+                </div>
+                <div class="form-row">
+                    <label for="{{ form.email.id_for_label }}">Email (optional)</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}<p class="field-error">{{ form.email.errors.0 }}</p>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="{{ form.service.id_for_label }}">Select Service</label>
+                {{ form.service }}
+                {% if form.service.errors %}<p class="field-error">{{ form.service.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="form-row-group">
+                <div class="form-row">
+                    <label for="{{ form.preferred_date.id_for_label }}">Preferred Date</label>
+                    {{ form.preferred_date }}
+                    {% if form.preferred_date.errors %}<p class="field-error">{{ form.preferred_date.errors.0 }}</p>{% endif %}
+                </div>
+                <div class="form-row">
+                    <label for="{{ form.preferred_time.id_for_label }}">Preferred Time</label>
+                    {{ form.preferred_time }}
+                    {% if form.preferred_time.errors %}<p class="field-error">{{ form.preferred_time.errors.0 }}</p>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label for="{{ form.message.id_for_label }}">Message (optional)</label>
+                {{ form.message }}
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">Confirm Booking Request</button>
+        </form>
+
+        <p class="form-note">
+            Prefer to talk? Call or WhatsApp us directly at
+            <a href="tel:+{{ SALON_PHONE_RAW }}">{{ SALON_PHONE }}</a>.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

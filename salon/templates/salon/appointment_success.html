@@ -1,0 +1,19 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Appointment Requested | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="section section--success">
+    <div class="container success-box">
+        <span class="success-box__icon">🌸</span>
+        <h1>Thank You!</h1>
+        <p>Your appointment request has been received. Our team will contact you shortly at your phone number to confirm the date and time.</p>
+        <div class="hero__actions">
+            <a href="{% url 'salon:home' %}" class="btn btn--primary">Back to Home</a>
+            <a href="https://wa.me/{{ SALON_WHATSAPP }}" target="_blank" rel="noopener" class="btn btn--ghost">Message us on WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

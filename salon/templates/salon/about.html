@@ -1,0 +1,51 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}About Us | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">Our Story</p>
+        <h1>About {{ SALON_NAME }}</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container about-content">
+        <p>
+            {{ SALON_NAME }} is a neighbourhood beauty salon in Bapunagar, Ahmedabad, dedicated to
+            helping every client look and feel their best. From everyday hair care to complete
+            bridal makeovers, our team takes a personal, caring approach with every appointment.
+        </p>
+        <p>
+            We use quality products and hygienic tools for every service, and we take the time to
+            understand what each client wants before recommending a treatment — whether that's a
+            relaxing hair spa, a brightening facial, or a full bridal package for your big day.
+        </p>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <span class="value-card__icon">🌸</span>
+                <h3>Personal Care</h3>
+                <p>Every treatment is tailored to your skin, hair and preferences.</p>
+            </div>
+            <div class="value-card">
+                <span class="value-card__icon">🧴</span>
+                <h3>Quality Products</h3>
+                <p>We use trusted, salon-grade products for lasting results.</p>
+            </div>
+            <div class="value-card">
+                <span class="value-card__icon">🤍</span>
+                <h3>Clean &amp; Hygienic</h3>
+                <p>Sanitised tools and a comfortable space for every visit.</p>
+            </div>
+        </div>
+
+        <div class="section__cta">
+            <a href="{% url 'salon:book_appointment' %}" class="btn btn--primary">Book Your Appointment</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

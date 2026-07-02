@@ -1,0 +1,38 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Contact Us | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">Get In Touch</p>
+        <h1>Contact Us</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container contact-grid">
+        <div class="contact-card">
+            <span class="contact-card__icon">📍</span>
+            <h3>Visit Us</h3>
+            <p>{{ SALON_ADDRESS }}</p>
+        </div>
+        <div class="contact-card">
+            <span class="contact-card__icon">📞</span>
+            <h3>Call Us</h3>
+            <p><a href="tel:+{{ SALON_PHONE_RAW }}">{{ SALON_PHONE }}</a></p>
+        </div>
+        <div class="contact-card">
+            <span class="contact-card__icon">💬</span>
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/{{ SALON_WHATSAPP }}" target="_blank" rel="noopener">{{ SALON_PHONE }}</a></p>
+        </div>
+    </div>
+
+    <div class="container section__cta">
+        <a href="{% url 'salon:book_appointment' %}" class="btn btn--primary">Book an Appointment</a>
+    </div>
+</section>
+
+{% endblock %}
