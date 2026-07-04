@@ -10,7 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'salon/css/style.css' %}">
-    {% block extra_head %}{% endblock %}
+
+   <link rel="icon" type="image/x-icon" href="{% static 'salon/images/favicon.ico' %}">
+   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'salon/images/favicon-16x16.png' %}">
+   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'salon/images/favicon-32x32.png' %}">
+   <link rel="icon" type="image/png" sizes="192x192" href="{% static 'salon/images/favicon-192x192.png' %}">
+   <link rel="apple-touch-icon" href="{% static 'salon/images/apple-touch-icon.png' %}">
+   {% block extra_head %}{% endblock %}
 </head>
 <body>
 
