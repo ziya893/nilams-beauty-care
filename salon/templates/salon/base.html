@@ -81,6 +81,9 @@
                 <p><a href="{% url 'salon:services' %}">Our Services</a></p>
                 <p><a href="{% url 'salon:book_appointment' %}">Book an Appointment</a></p>
                 <p><a href="{% url 'salon:about' %}">About Us</a></p>
+                {% if request.user.is_staff %}
+                <p><a href="{% url 'salon:manage_bookings' %}">Manage Bookings (Staff)</a></p>
+        {% endif %}
             </div>
         </div>
         <div class="footer__bottom">

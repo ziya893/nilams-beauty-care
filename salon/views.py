@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from itertools import groupby
 from operator import attrgetter
 
+from django.contrib.admin.views.decorators import staff_member_required
 from .forms import AppointmentForm
-from .models import Service
+from .models import Appointment, Service
 
 
 def home(request):
@@ -54,3 +55,19 @@ def book_appointment(request):
 
 def appointment_success(request):
     return render(request, 'salon/appointment_success.html')
+@staff_member_required(login_url='/admin/login/')
+def manage_bookings(request):
+    """Staff-only page listing all customer appointment bookings."""
+    if request.method == 'POST':
+        appointment_id = request.POST.get('appointment_id')
+        new_status = request.POST.get('status')
+        if appointment_id and new_status in dict(Appointment.STATUS_CHOICES):
+            Appointment.objects.filter(id=appointment_id).update(status=new_status)
+            messages.success(request, "Booking status updated.")
+        return redirect('salon:manage_bookings')
+
+    appointments = Appointment.objects.select_related('service').all()
+    return render(request, 'salon/manage_bookings.html', {
+        'appointments': appointments,
+        'status_choices': Appointment.STATUS_CHOICES,
+    })

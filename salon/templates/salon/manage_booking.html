@@ -1,0 +1,62 @@
+{% extends 'salon/base.html' %}
+
+{% block title %}Manage Bookings | {{ SALON_NAME }}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="eyebrow eyebrow--center">Staff Only</p>
+        <h1>Manage Bookings</h1>
+        <p class="page-hero__subtitle">All appointment requests submitted by customers.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if appointments %}
+        <div class="bookings-table-wrapper">
+            <table class="bookings-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.full_name }}</td>
+                        <td><a href="tel:{{ appointment.phone_number }}">{{ appointment.phone_number }}</a></td>
+                        <td>{{ appointment.service.name|default:"General Enquiry" }}</td>
+                        <td>{{ appointment.preferred_date|date:"d M Y" }}</td>
+                        <td>{{ appointment.get_preferred_time_display }}</td>
+                        <td>{{ appointment.message|default:"—"|truncatewords:12 }}</td>
+                        <td>
+                            <form method="post" class="status-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                                <select name="status" class="status-select status-select--{{ appointment.status }}" onchange="this.form.submit()">
+                                    {% for value, label in status_choices %}
+                                    <option value="{{ value }}" {% if appointment.status == value %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p style="text-align:center;">No appointment bookings yet.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
