@@ -198,7 +198,7 @@ img { max-width: 100%; display: block; }
 /* ---------- Hero ---------- */
 .hero {
     background:
-        linear-gradient(160deg, rgba(76,16,36,0.92), rgba(109,27,52,0.85)),
+        linear-gradient(160deg, rgba(76,16,36,0.92), rgba(27, 83, 109, 0.85)),
         radial-gradient(circle at 80% 20%, rgba(217,184,118,0.35), transparent 60%);
     color: var(--white);
     text-align: center;
