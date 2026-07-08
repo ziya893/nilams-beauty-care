@@ -36,6 +36,7 @@ def _format_details(appointment):
 
 def _send_email_notification(appointment):
     if not settings.EMAIL_HOST_USER or not settings.SALON_NOTIFY_EMAIL:
+        logger.warning("Email notification skipped - EMAIL_HOST_USER or SALON_NOTIFY_EMAIL not set")
         return
     subject = f"New booking: {appointment.full_name} on {appointment.preferred_date}"
     message = "New appointment booking received!\n\n" + _format_details(appointment)
@@ -45,11 +46,11 @@ def _send_email_notification(appointment):
             message,
             settings.DEFAULT_FROM_EMAIL,
             [settings.SALON_NOTIFY_EMAIL],
-            fail_silently=True,
+            fail_silently=False,
         )
+        logger.info("Booking email notification sent successfully")
     except Exception:
         logger.exception("Failed to send booking email notification")
-
 
 def _send_whatsapp_notification(appointment):
     if not settings.CALLMEBOT_PHONE or not settings.CALLMEBOT_APIKEY:
