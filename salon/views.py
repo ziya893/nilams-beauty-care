@@ -6,6 +6,7 @@ from operator import attrgetter
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import AppointmentForm
 from .models import Appointment, Service
+from .notifications import send_booking_notifications
 
 
 def home(request):
@@ -41,9 +42,9 @@ def book_appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(
-                request,
+            appointment = form.save()
+            send_booking_notifications(appointment)
+            messages.success(                request,
                 "Thank you! Your appointment request has been received. "
                 "We will contact you shortly to confirm."
             )

@@ -137,3 +137,20 @@ SALON_ADDRESS = "Vrundavan Complex, B/9, Hirawadi Road, Bapunagar, Ahmedabad, 38
 SALON_PHONE = "+91 98240 83685"
 SALON_PHONE_RAW = "919824083685"  # used for tel: and WhatsApp links, no + or spaces
 SALON_WHATSAPP = "919824083685"
+# -------------------------------------------------------------------
+# EMAIL NOTIFICATIONS (sent to the salon when a new booking comes in)
+# -------------------------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SALON_NOTIFY_EMAIL = os.environ.get('SALON_NOTIFY_EMAIL', EMAIL_HOST_USER)
+
+# -------------------------------------------------------------------
+# WHATSAPP NOTIFICATIONS (via the free CallMeBot service)
+# -------------------------------------------------------------------
+CALLMEBOT_PHONE = os.environ.get('CALLMEBOT_PHONE', '')
+CALLMEBOT_APIKEY = os.environ.get('CALLMEBOT_APIKEY', '')
