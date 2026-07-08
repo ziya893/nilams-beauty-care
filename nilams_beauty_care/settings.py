@@ -154,3 +154,16 @@ SALON_NOTIFY_EMAIL = os.environ.get('SALON_NOTIFY_EMAIL', EMAIL_HOST_USER)
 # -------------------------------------------------------------------
 CALLMEBOT_PHONE = os.environ.get('CALLMEBOT_PHONE', '')
 CALLMEBOT_APIKEY = os.environ.get('CALLMEBOT_APIKEY', '')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
