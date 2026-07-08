@@ -1,4 +1,5 @@
 import logging
+import threading
 import urllib.parse
 import urllib.request
 
@@ -9,6 +10,13 @@ logger = logging.getLogger(__name__)
 
 
 def send_booking_notifications(appointment):
+    """Send email and WhatsApp alerts in a background thread so a slow or
+    blocked connection never delays or breaks the booking request itself."""
+    thread = threading.Thread(target=_send_all, args=(appointment,), daemon=True)
+    thread.start()
+
+
+def _send_all(appointment):
     _send_email_notification(appointment)
     _send_whatsapp_notification(appointment)
 
