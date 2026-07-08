@@ -4,20 +4,20 @@
    ========================================================= */
 
 :root {
-    --wine: #1a1a1a;
-    --wine-dark: #0d0d0d;
-    --gold: #b8935a;
-    --gold-light: #e8dcc4;
-    --cream: #faf6ef;
-    --blush: #f3ead9;
-    --ink: #1a1a1a;
-    --ink-soft: #5c5347;
+    --wine: #1c3b30;
+    --wine-dark: #12261f;
+    --gold: #c9a24b;
+    --gold-light: #ddc07f;
+    --cream: #faf8f2;
+    --blush: #e4ecdf;
+    --ink: #1e2b24;
+    --ink-soft: #5c6b61;
     --white: #ffffff;
-    --shadow: 0 10px 30px rgba(26, 26, 26, 0.08);
+    --shadow: 0 10px 30px rgba(18, 38, 31, 0.10);
     --radius: 16px;
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Lato', 'Segoe UI', sans-serif;
-}* { box-sizing: border-box; }
+} { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
