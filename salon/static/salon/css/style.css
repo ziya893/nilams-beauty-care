@@ -4,16 +4,16 @@
    ========================================================= */
 
 :root {
-    --wine: #14213d;
-    --wine-dark: #0c1426;
-    --gold: #c48a7a;
-    --gold-light: #e0b0a0;
-    --cream: #faf6f0;
-    --blush: #f0e2dc;
-    --ink: #241f1c;
-    --ink-soft: #6b6560;
+    --wine: #a13d63;
+    --wine-dark: #6e2a45;
+    --gold: #c97b91;
+    --gold-light: #edc0cb;
+    --cream: #fdf6f7;
+    --blush: #f3d9e0;
+    --ink: #2e1e24;
+    --ink-soft: #6b5860;
     --white: #ffffff;
-    --shadow: 0 10px 30px rgba(12, 20, 38, 0.12);
+    --shadow: 0 10px 30px rgba(110, 42, 69, 0.10);
     --radius: 16px;
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Lato', 'Segoe UI', sans-serif;
